@@ -1,8 +1,10 @@
 import cv2
 import numpy as np
-from keras_ocr_onnx import Onnx_keras_ocr
+from .keras_ocr_onnx import Onnx_keras_ocr
+import os
 
-onnx_keras_ocr = Onnx_keras_ocr('./detector.onnx', './recognizer.onnx')
+
+onnx_keras_ocr = Onnx_keras_ocr('./server/detector.onnx', './server/recognizer.onnx')
 
 def only_alphabet(text: str):
     output_text = ''

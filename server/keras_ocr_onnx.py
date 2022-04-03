@@ -3,8 +3,8 @@ from PIL import Image
 import numpy as np
 import cv2
 import os
-from utils.detector_utils import Detector_utils
-from utils.recognizer_utils import Recognizer_utils
+from .utils.detector_utils import Detector_utils
+from .utils.recognizer_utils import Recognizer_utils
 
 class Onnx_keras_ocr():
   def __init__(self, detector_path, recognizer_path):
