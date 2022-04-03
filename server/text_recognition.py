@@ -1,10 +1,12 @@
 import cv2
 import numpy as np
-from .keras_ocr_onnx import Onnx_keras_ocr
+from keras_ocr_onnx import Onnx_keras_ocr
 import os
+    
+detector_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'detector.onnx')
+recognizer_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'recognizer.onnx')
 
-
-onnx_keras_ocr = Onnx_keras_ocr('./server/detector.onnx', './server/recognizer.onnx')
+onnx_keras_ocr = Onnx_keras_ocr('../detector/detector.onnx', '../recognizer/recognizer.onnx')
 
 def only_alphabet(text: str):
     output_text = ''
