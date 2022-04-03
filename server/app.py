@@ -7,8 +7,8 @@ from PIL import Image
 import requests
 import os
 import base64
-from text_recognition import extract_words_and_result_image
-from dict_search import search_dictionary, search_thesaurus
+from text_recognition import extract_words_and_result_image, onnx_keras_ocr
+# from dict_search import search_dictionary, search_thesaurus
 
 # server url : https://visaitazsamongkol.herokuapp.com/
 tmp_filename = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'tmp.jpg')
@@ -75,7 +75,13 @@ def receiveImageFromURLAndPredict():
     image.save(tmp_filename)
     return send_file(tmp_filename, mimetype='image/jpeg')
 
+@app.route('/test', methods=['GET'])
+def test():
+    img = Image.open('./test.png')
+    res = onnx_keras_ocr.run([img])
+    return {"result": [text for text, box in res]}
 
-port = int(os.environ.get("PORT", 5000))
+
+port = int(os.environ.get("PORT", 1234))
 
 app.run(debug=True, host='0.0.0.0', port=port)
